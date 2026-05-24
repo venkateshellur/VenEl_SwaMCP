@@ -5,9 +5,11 @@
 ## Project Overview
 
 **VenEl_SwaMCP** is a standalone, Python-based Model Context Protocol (MCP) server. Its purpose is to act as a "Bootstrap Agent" or "Self-Tooling Agent." 
-Unlike traditional MCP servers (like `VenEl.MCPAssistant`) where tools are hardcoded by a developer ahead of time, VenEl_SwaMCP allows an AI agent to dynamically write, execute, and permanently register new tools for itself at runtime.
 
-If the agent encounters a problem it lacks a tool for, it can write the code to solve the problem, and VenEl_SwaMCP will instantly expose that code as a new capability.
+> **⚠️ DISCLAIMER OF LIABILITY ⚠️**
+> **This software is provided "as is", without warranty of any kind, express or implied. The user assumes all responsibility and risk for the use of this software. By running this system—especially the dynamic code execution and database connection features—the user accepts full liability for any data loss, system corruption, security breaches, or unauthorized modifications. The creator/provider is not responsible for any damages or consequences resulting from the use of this tool.**
+
+VenEl_SwaMCP is an advanced MCP (Model Context Protocol) server that grants AI agents the ability to dynamically write, execute, and register their own tools at runtime. This "Bootstrap Agent" framework acts as a foundational building block for autonomous AI systems. If the agent encounters a problem it lacks a tool for, it can write the code to solve the problem, and VenEl_SwaMCP will instantly expose that code as a new capability.
 
 ## Prerequisites
 
