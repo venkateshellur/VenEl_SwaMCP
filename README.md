@@ -23,12 +23,23 @@ You can run VenEl_SwaMCP using one of three methods: downloading the pre-built s
 ### Method 1: Standalone Executable (Recommended)
 You do not need Python installed to use this method! Just download the binary for your OS.
 1. Download the latest release binary for your OS from the **GitHub Releases** page.
-2. In your MCP Client (like Claude Desktop), point directly to the binary:
+2. In your MCP Client (like Claude Desktop), point directly to the binary. 
+   **On Windows:**
    ```json
    {
      "mcpServers": {
        "VenEl_SwaMCP": {
-         "command": "/absolute/path/to/downloaded/VenEl_SwaMCP.exe"
+         "command": "C:\\path\\to\\VenEl_SwaMCP-windows.exe"
+       }
+     }
+   }
+   ```
+   **On Mac/Linux:**
+   ```json
+   {
+     "mcpServers": {
+       "VenEl_SwaMCP": {
+         "command": "/absolute/path/to/VenEl_SwaMCP-macos"
        }
      }
    }
@@ -79,7 +90,19 @@ If you want to develop or run the server manually:
    ```
 
 3. **MCP Client Configuration:**
-   Add the server to your MCP client configuration file:
+   Add the server to your MCP client configuration file.
+   **On Windows:**
+   ```json
+   {
+     "mcpServers": {
+       "VenEl_SwaMCP": {
+         "command": "C:\\path\\to\\VenEl_SwaMCP\\.venv\\Scripts\\python.exe",
+         "args": ["-m", "src.server"]
+       }
+     }
+   }
+   ```
+   **On Mac/Linux:**
    ```json
    {
      "mcpServers": {
