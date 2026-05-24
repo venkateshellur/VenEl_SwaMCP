@@ -9,6 +9,44 @@ Unlike traditional MCP servers (like `VenEl.MCPAssistant`) where tools are hardc
 
 If the agent encounters a problem it lacks a tool for, it can write the code to solve the problem, and VenEl_SwaMCP will instantly expose that code as a new capability.
 
+## Installation & Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/venkateshellur/VenEl_SwaMCP.git
+   cd VenEl_SwaMCP
+   ```
+
+2. **Set up the Python Virtual Environment:**
+   **Mac/Linux:**
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+   **Windows:**
+   ```cmd
+   python -m venv .venv
+   .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. **Docker Dependency:**
+   This server requires Docker Desktop (or equivalent daemon) to be installed on the host machine to securely execute dynamically generated Python tools. The server features an auto-start mechanism and will attempt to wake up Docker automatically if it is closed.
+
+4. **MCP Client Configuration:**
+   Add the server to your MCP client (like Claude Desktop) configuration file:
+   ```json
+   {
+     "mcpServers": {
+       "VenEl_SwaMCP": {
+         "command": "/absolute/path/to/VenEl_SwaMCP/.venv/bin/python",
+         "args": ["-m", "src.server"]
+       }
+     }
+   }
+   ```
+
 ## Planned Architecture
 
 The system is designed to be highly modular, configurable, and platform-independent, mimicking clean architecture principles:
