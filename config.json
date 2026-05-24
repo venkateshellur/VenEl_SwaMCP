@@ -4,7 +4,7 @@
   "workspace_directory": "./workspace",
   "docker_image": "python:3.11-slim",
   "database_security": {
-    "allow_insert": false,
+    "allow_insert": true,
     "allow_update": false,
     "allow_delete": false,
     "allow_ddl": false

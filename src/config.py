@@ -4,7 +4,7 @@ from pathlib import Path
 from pydantic import BaseModel
 
 class DatabaseSecuritySettings(BaseModel):
-    allow_insert: bool = False
+    allow_insert: bool = True
     allow_update: bool = False
     allow_delete: bool = False
     allow_ddl: bool = False
