@@ -2,11 +2,15 @@ import subprocess
 import sys
 import os
 import tempfile
+import logging
 from .base import ExecutionEngine
+
+logger = logging.getLogger(__name__)
 
 class LocalEngine(ExecutionEngine):
     def __init__(self):
         super().__init__()
+        logger.warning("CRITICAL SECURITY WARNING: LocalEngine initialized. OS-level sandboxing is DISABLED.")
         
     def execute(self, script_content: str) -> str:
         """

@@ -4,7 +4,7 @@ from pathlib import Path
 from pydantic import BaseModel
 
 class Config(BaseModel):
-    allow_local_fallback: bool = True
+    allow_unsafe_local_fallback: bool = False
     tools_directory: str = "./dynamic_tools"
     workspace_directory: str = "./workspace"
     docker_image: str = "python:3.11-slim"
