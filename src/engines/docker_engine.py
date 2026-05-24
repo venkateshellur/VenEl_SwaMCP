@@ -52,7 +52,7 @@ class DockerEngine(ExecutionEngine):
                     time.sleep(2)
             raise Exception("Timed out waiting for Docker to start.")
         
-    def execute(self, script_content: str) -> str:
+    def _execute_impl(self, script_content: str) -> str:
         """
         Executes a python script inside an ephemeral docker container.
         Provides strong sandboxing:

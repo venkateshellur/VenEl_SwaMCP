@@ -12,7 +12,7 @@ class LocalEngine(ExecutionEngine):
         super().__init__()
         logger.warning("CRITICAL SECURITY WARNING: LocalEngine initialized. OS-level sandboxing is DISABLED.")
         
-    def execute(self, script_content: str) -> str:
+    def _execute_impl(self, script_content: str) -> str:
         """
         Executes a python script locally using subprocess.
         Injects a sys.audit hook to prevent system file modification.

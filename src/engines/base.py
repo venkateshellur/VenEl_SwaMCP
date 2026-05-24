@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 import os
 from pathlib import Path
 from ..config import settings
+from ..security.analyzer import ScriptAnalyzer
 
 class ExecutionEngine(ABC):
     """
@@ -14,18 +15,20 @@ class ExecutionEngine(ABC):
         # Ensure workspace exists
         self.workspace_dir.mkdir(parents=True, exist_ok=True)
         
-    @abstractmethod
     def execute(self, script_content: str) -> str:
         """
-        Execute the given python script securely.
+        Execute the given python script securely by first analyzing it for security violations,
+        and then delegating to the concrete implementation.
+        """
+        # Run AST static analysis first
+        ScriptAnalyzer.analyze(script_content)
         
-        Args:
-            script_content (str): The raw python script to execute.
-            
-        Returns:
-            str: The standard output from the execution.
-            
-        Raises:
-            Exception: If execution fails or violates security constraints.
+        # Delegate to the specific engine
+        return self._execute_impl(script_content)
+
+    @abstractmethod
+    def _execute_impl(self, script_content: str) -> str:
+        """
+        Concrete implementation for running the script.
         """
         pass

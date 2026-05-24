@@ -2,5 +2,11 @@
   "allow_unsafe_local_fallback": false,
   "tools_directory": "./dynamic_tools",
   "workspace_directory": "./workspace",
-  "docker_image": "python:3.11-slim"
+  "docker_image": "python:3.11-slim",
+  "database_security": {
+    "allow_insert": false,
+    "allow_update": false,
+    "allow_delete": false,
+    "allow_ddl": false
+  }
 }

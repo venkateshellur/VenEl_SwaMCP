@@ -3,11 +3,18 @@ import os
 from pathlib import Path
 from pydantic import BaseModel
 
+class DatabaseSecuritySettings(BaseModel):
+    allow_insert: bool = False
+    allow_update: bool = False
+    allow_delete: bool = False
+    allow_ddl: bool = False
+
 class Config(BaseModel):
     allow_unsafe_local_fallback: bool = False
     tools_directory: str = "./dynamic_tools"
     workspace_directory: str = "./workspace"
     docker_image: str = "python:3.11-slim"
+    database_security: DatabaseSecuritySettings = DatabaseSecuritySettings()
 
 def load_config(config_path: str = "config.json") -> Config:
     # Resolve relative to the project root
