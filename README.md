@@ -9,6 +9,13 @@ Unlike traditional MCP servers (like `VenEl.MCPAssistant`) where tools are hardc
 
 If the agent encounters a problem it lacks a tool for, it can write the code to solve the problem, and VenEl_SwaMCP will instantly expose that code as a new capability.
 
+## Prerequisites
+
+Before installing, ensure the host machine has the following core dependencies installed:
+1. **Python 3.11+**: [Download Python](https://www.python.org/downloads/)
+2. **Git**: [Download Git](https://git-scm.com/downloads)
+3. **Docker Desktop**: [Download Docker](https://www.docker.com/products/docker-desktop/) (Required for the Tier 1 security sandbox)
+
 ## Installation & Setup
 
 1. **Clone the repository:**
