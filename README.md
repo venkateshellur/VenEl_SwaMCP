@@ -16,7 +16,47 @@ Before installing, ensure the host machine has the following core dependencies i
 2. **Git**: [Download Git](https://git-scm.com/downloads)
 3. **Docker Desktop**: [Download Docker](https://www.docker.com/products/docker-desktop/) (Required for the Tier 1 security sandbox)
 
-## Installation & Setup
+## Installation & Usage
+
+You can run VenEl_SwaMCP using one of three methods: downloading the pre-built standalone executable, pulling the Docker image, or running from source.
+
+### Method 1: Standalone Executable (Recommended)
+You do not need Python installed to use this method! Just download the binary for your OS.
+1. Download the latest release binary for your OS from the **GitHub Releases** page.
+2. In your MCP Client (like Claude Desktop), point directly to the binary:
+   ```json
+   {
+     "mcpServers": {
+       "VenEl_SwaMCP": {
+         "command": "/absolute/path/to/downloaded/VenEl_SwaMCP.exe"
+       }
+     }
+   }
+   ```
+
+### Method 2: Docker Image
+You do not need Python or the source code, but you do need Docker installed.
+Because this server uses Docker internally as a sandbox, you must mount the host's Docker socket.
+1. In your MCP Client, configure it to run via Docker:
+   ```json
+   {
+     "mcpServers": {
+       "VenEl_SwaMCP": {
+         "command": "docker",
+         "args": [
+           "run", 
+           "-i", 
+           "--rm", 
+           "-v", "/var/run/docker.sock:/var/run/docker.sock", 
+           "ghcr.io/venkateshellur/venel_swamcp:latest"
+         ]
+       }
+     }
+   }
+   ```
+
+### Method 3: Running from Source
+If you want to develop or run the server manually:
 
 1. **Clone the repository:**
    ```bash
@@ -38,11 +78,8 @@ Before installing, ensure the host machine has the following core dependencies i
    pip install -r requirements.txt
    ```
 
-3. **Docker Dependency:**
-   This server requires Docker Desktop (or equivalent daemon) to be installed on the host machine to securely execute dynamically generated Python tools. The server features an auto-start mechanism and will attempt to wake up Docker automatically if it is closed.
-
-4. **MCP Client Configuration:**
-   Add the server to your MCP client (like Claude Desktop) configuration file:
+3. **MCP Client Configuration:**
+   Add the server to your MCP client configuration file:
    ```json
    {
      "mcpServers": {
