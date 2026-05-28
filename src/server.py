@@ -20,8 +20,18 @@ class SwaMCPServer:
         self.server = Server("VenEl_SwaMCP")
         self.tool_manager = ToolManager()
         
-        # Initialize Engine (Fallback to Local for now)
-        self.engine = LocalEngine() 
+        # Initialize Engine: Try Tier 1 (Docker), fallback to Tier 2 (Local)
+        try:
+            from .engines.docker_engine import DockerEngine
+            self.engine = DockerEngine()
+            logger.info("Using Tier 1: Docker Execution Engine")
+        except Exception as e:
+            if settings.allow_unsafe_local_fallback:
+                logger.warning(f"Docker engine unavailable ({e}). Falling back to Tier 2: Local Execution Engine.")
+                self.engine = LocalEngine()
+            else:
+                logger.error(f"Docker engine unavailable ({e}) and allow_unsafe_local_fallback is False.")
+                raise Exception("Execution Engine Initialization failed. Cannot safely run tools.")
         
         self.setup_handlers()
 

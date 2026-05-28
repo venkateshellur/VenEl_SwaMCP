@@ -1,5 +1,5 @@
 {
-  "allow_unsafe_local_fallback": false,
+  "allow_unsafe_local_fallback": true,
   "tools_directory": "./dynamic_tools",
   "workspace_directory": "./workspace",
   "docker_image": "python:3.11-slim",
