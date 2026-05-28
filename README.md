@@ -77,40 +77,29 @@ If you want to develop or run the server manually:
    cd VenEl_SwaMCP
    ```
 
-2. **Set up the Python Virtual Environment:**
-   **Mac/Linux:**
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   pip install -r requirements.txt
-   ```
-   **Windows:**
-   ```cmd
-   python -m venv .venv
-   .venv\Scripts\activate
-   pip install -r requirements.txt
-   ```
-
-3. **MCP Client Configuration:**
-   Add the server to your MCP client configuration file.
+2. **MCP Client Configuration (Auto-setup):**
+   The project includes auto-setup scripts that automatically create the virtual environment and install dependencies if they don't exist, and then start the server. Add the server to your MCP client configuration file by pointing to the appropriate start script:
+   
    **On Windows:**
    ```json
    {
      "mcpServers": {
        "VenEl_SwaMCP": {
-         "command": "C:\\path\\to\\VenEl_SwaMCP\\.venv\\Scripts\\python.exe",
-         "args": ["-m", "src.server"]
+         "command": "cmd.exe",
+         "args": ["/c", "C:\\absolute\\path\\to\\VenEl_SwaMCP\\mcp_start.bat"]
        }
      }
    }
    ```
+   *Note: Using `mcp_start.bat` solves issues with moving between environments by automatically verifying/correcting `.venv` and resolving paths correctly.*
+   
    **On Mac/Linux:**
    ```json
    {
      "mcpServers": {
        "VenEl_SwaMCP": {
-         "command": "/absolute/path/to/VenEl_SwaMCP/.venv/bin/python",
-         "args": ["-m", "src.server"]
+         "command": "/absolute/path/to/VenEl_SwaMCP/mcp_start.sh",
+         "args": []
        }
      }
    }
